@@ -904,7 +904,7 @@ function openLoginModal() {
   wrap.innerHTML = `
     <div class="settings-dialog" role="dialog" aria-modal="true" style="max-width: 320px; background: var(--color-bg-alt, #fff); border: 1px solid #000; box-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
       <div class="settings-head" style="background: #800000; color: #fff; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
-        <span>Admin Access</span>
+        <span>Login</span>
         <button type="button" class="form-btn" onclick="closeLoginModal()" style="color: #fff; background: none; border: none; cursor: pointer; font-weight: bold;">x</button>
       </div>
       <div class="settings-body" style="text-align: center; padding: 20px 10px; background: var(--color-bg-alt, #fff); color: var(--color-fg-main, #000);">
@@ -912,7 +912,7 @@ function openLoginModal() {
           <p style="margin-bottom: 15px; color: green; font-weight: bold;">You are logged in as Admin!</p>
           <button type="button" class="form-btn" onclick="window._googleLogout(); closeLoginModal();" style="padding: 6px 12px; cursor: pointer;">Logout</button>
         ` : `
-          <p style="margin-bottom: 20px; font-size: 11px;">Log in securely using your registered Google Account.</p>
+          <p style="margin-bottom: 20px; font-size: 11px;">you cannot log in as an administrator if your account does not have admin privileges.</p>
           <button type="button" class="form-btn" onclick="window._googleLogin(); closeLoginModal();" style="padding: 8px 16px; font-weight: bold; background: #800000; color: #fff; border: 1px solid #000; cursor: pointer;">
             Login with Google
           </button>
