@@ -980,7 +980,7 @@ function checkLockdown() {
       overlay.style.inset = '0';
       overlay.style.backgroundColor = '#000000';
       overlay.style.color = '#ffffff';
-      overlay.style.zIndex = '999999';
+      overlay.style.zIndex = '9999';
       overlay.style.display = 'flex';
       overlay.style.flexDirection = 'column';
       overlay.style.alignItems = 'center';
@@ -994,12 +994,12 @@ function checkLockdown() {
     }
     
     overlay.innerHTML = `
-      <h1 style="font-size: 24px; color: #ff0000; margin-bottom: 20px; font-weight: bold;">[ TOTAL LOCKDOWN ]</h1>
+      <h1 style="font-family: arial; font-size: 24px; color: #ff0000; margin-bottom: 20px; ;">LOCKDOWN</h1>
       <p style="font-size: 14px; max-width: 600px; margin-bottom: 30px; line-height: 1.6;">
-        This website is currently locked down by the administrator. 
-        All content has been temporarily closed.
+        this website is currently in lock-down. 
+        all content has been temporarily closed.
       </p>
-      <button class="form-btn" id="lockdownLoginBtn" style="padding: 6px 16px; font-size: 12px; cursor: pointer; background: #800000; color: #fff; border: 1px solid #000;">Admin Login</button>
+      <button class="form-btn" id="lockdownLoginBtn" style="padding: 6px 16px; font-size: 12px; cursor: pointer; background: #800000; color: #fff; border: 1px solid #000;">Login</button>
     `;
     
     document.getElementById('lockdownLoginBtn').addEventListener('click', () => {
