@@ -3,8 +3,16 @@ import { getDatabase, ref, set, get, push, remove, onValue, off, serverTimestamp
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
 // Default config that can be overridden by window.firebaseConfig
+// Get the full snippet from: Firebase Console -> gear icon -> Project settings
+// -> General tab -> "Your apps" -> your Web app -> SDK setup and configuration
 const firebaseConfig = window.firebaseConfig || {
-  databaseURL: "https://yurineet-death-archive-default-rtdb.firebaseio.com"
+  apiKey: "AIzaSyBBr6zPaWgGNcGHz9iiNTO8O4EgAzsUMOk",
+  authDomain: "scrapfielddatabase.firebaseapp.com",
+  databaseURL: "https://scrapfielddatabase-default-rtdb.firebaseio.com",
+  projectId: "scrapfielddatabase",
+  storageBucket: "scrapfielddatabase.firebasestorage.app",
+  messagingSenderId: "489751764776",
+  appId: "1:489751764776:web:22255a1e9bf05a538bfa1d"
 };
 
 const app = initializeApp(firebaseConfig);
