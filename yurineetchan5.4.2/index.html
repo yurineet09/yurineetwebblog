@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YURI.NEET09</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/chan.css">
+
+    <script src="assets/scripts/js/site-settings.js"></script>
+
+    <style>
+        .boardlist-dynamic {
+            display: inline;
+        }
+        .home-box{
+            width:min(900px,calc(100% - 20px));
+            margin:0 auto;
+        }
+
+        /* banner */
+        #banner{
+            border:2px solid #000;
+            display:block;
+            margin:0 auto;
+        }
+
+        /* INFO BOX */
+        .info-box{
+            border:1px solid #000;
+            margin-top:18px;
+        }
+
+        .info-title{
+            padding:6px 8px;
+            background:#800;
+            color:#fff;
+            font-weight:bold;
+            font-family: Arial, sans-serif;
+            font-size:18px;
+        }
+
+        .info-body{
+            padding:10px;
+            background:#fff;
+            color:#000;
+            font-family: Arial, sans-serif;
+            font-size:15px;
+        }
+
+        /* BOARDS */
+        .boards-box{
+            margin-top:18px;
+            border:1px solid #000;
+        }
+
+        
+        .boxbar{
+            background:#fca;
+            color:#800;
+            padding:6px 8px;
+            font-weight:bold;
+            font-family: Arial, sans-serif;
+        }
+
+       .boards-body{
+    background:#fff;
+    padding:10px;
+    font-family: Arial, sans-serif;
+    font-size:14px;
+
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:4px 30%;
+}
+
+.boards-body a{
+    display:block;
+    color:#800;
+    text-decoration:none;
+    margin:0;
+}
+
+.boards-body a:hover{
+    text-decoration:underline;
+}
+
+.smallflagicon{
+    width:16px;
+    height:16px;
+    background-image: url('https://greenbox.network/icons/calle/Brazil.png');
+    background-size: cover;
+}
+    </style>
+</head>
+
+<body onload="if(window.filterPosts) window.filterPosts()">
+
+<div class="boardlist">
+    <span class="boardlist-dynamic"></span>
+
+    
+    <span class="boardlist-right">    [<a href="index.html">home</a>]
+[<a href="#" data-open-settings data-i18n="settings">settings</a>]</span>
+</div>
+
+<div class="logo" style="background: var(--color-bg-grad);">
+<img src="assets/images/ENTRANCEIMG.png" alt="Banner" id="banner">
+
+<script src="assets/scripts/js/random-banner.js"></script>  <!-- loads the banner script -->
+
+<h1 class="mtitle" style="display:none;">YURI.NEET09</h1>
+    <hr class="hrThin">
+</div>
+
+<div class="home-box">
+
+    <div id="adminContainer"></div>
+
+  
+
+
+    <!-- BLOCK 1 -->
+    <div class="info-box">
+
+        <div class="info-title">what is this? <span style="font-size: 12px; font-weight: normal; float: right;">06/06/26(Sat) yuri.neet</span></div>
+        <div class="info-body">
+            my personal site, where i can leave my drafts, thoughts, or post things i don't want to keep on my computer, so that when i die people can get a little sense of what i was like or something like that
+        </div>
+
+    </div>
+
+    <!-- BLOCK 2 -->
+    <div class="info-box">
+
+        <div class="info-title">why does it look like this? <span style="font-size: 12px; font-weight: normal; float: right;">06/06/26(Sat) yuri.neet</span></div>
+        <div class="info-body">
+            over the past few months i tried hard to give this site its own unique style, but i eventually gave up when i realized i wasn't feeling comfortable with any of it. so i started using imageboard css, that's it. larppp :-)
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <div class="info-title">why is the default language english?<span style="font-size: 12px; font-weight: normal; float: right;">06/07/26(Mon) yuri.neet</span></div>
+        <div class="info-body">
+            you're probably not even wondering about this, but just in case, i'd like to answer: 1. english works well and anyone can read it, it's almost a rule of the internet. 2. practicing english helps me get better at it. 3. there are things i can only express in english. anyway, i'm brazilian! <div class="smallflagicon" style="display:inline-block; margin-left:4px;"></div>
+        </div>
+
+    </div>
+
+    <div class="info-box">
+
+        <div class="info-title">warnings and disclaimer<span style="font-size: 12px; font-weight: normal; float: right;">09/07/26(Thu) yuri.neet</span></div>
+        <div class="info-body">
+    as i said before, this is my personal webblog, so i'll probably post sensitive stuff or delicate media from time to time. if you keep browsing, you're doing so at your own risk. click <a href="assets/pages/warn.html">HERE</a> to read the old warn.html.
+        </div>
+
+    </div>
+
+    <!-- BOARDS -->
+    <div class="boards-box">
+        <div class="boxbar">pages</div>
+        <div class="boards-body footer-boardlist">
+            <a href="assets/pages/blog.html">/blog/</a>
+            <a href="assets/pages/sketches.html">/sketches/</a>
+          <!--  <a href="assets/pages/gallery.html">gallery</a> -->
+        </div>
+    </div>
+
+    <br>
+
+    <div style="text-align:center; color:var(--color-fg-muted); font-size:12px;">
+        BEST VIEWED AT 1366x768
+    </div>
+
+     <div style="text-align:center; color:var(--color-fg-muted); font-size:12px;">
+        MOBILE SUPPORT (maybe)
+    </div>
+
+    <div class="footer">
+        <div class="footer-boardlist"></div>
+    </div>
+
+</div>
+
+<script src="assets/scripts/js/script.js"></script>
+<script type="module" src="assets/scripts/js/firebase.js"></script>
+
+</body>
+</html>

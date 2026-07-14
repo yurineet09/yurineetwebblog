@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../chan.css">
+    <script src="../scripts/js/site-settings.js"></script>
+    <title>404 PAGE NOT FOUND</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--color-border-strong);
+            background: var(--color-bg-panel);
+            padding: 20px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: var(--color-fg-title);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #000;
+            margin-bottom: 20px;
+        }
+        .admin-revert-box {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid var(--color-border-strong);
+            background: var(--color-bg-reply);
+            text-align: left;
+        }
+    </style>
+</head>
+<body onload="initPageNotFound()">
+    <div class="boardlist">
+        <span class="boardlist-dynamic"></span>
+        <span class="boardlist-right">[<a href="../../index.html">home</a>] [<a href="#" data-open-settings data-i18n="settings">settings</a>]</span>
+    </div>
+
+    <div class="container">
+        <h1>404 PAGE NOT FOUND</h1>
+        <img src="../../PAGENOTFOUND.png" alt="404 Not Found">
+        <p>The page you are looking for does not exist or has been temporarily closed.</p>
+
+        <div id="adminRevertArea" style="display: none;">
+            <div class="admin-revert-box">
+                <h3 style="margin-top:0; color: #800000;">Admin Control (Revert Lockdowns)</h3>
+                <div id="revertStatus" style="font-size:11px; margin-bottom:10px; color:green; font-weight:bold;"></div>
+                <div id="loginArea">
+                    <p style="font-size:11px;">You must be logged in as admin to revert board lockdowns.</p>
+                    <button class="form-btn" onclick="openLoginModal()" style="font-weight:bold; background:#800000; color:#fff; border:1px solid #000; padding:6px 12px; cursor:pointer;">Login with Google</button>
+                </div>
+                <div id="controlsArea" style="display: none;">
+                    <p style="font-size:11px; font-weight:bold;">Untick locked boards to unlock them:</p>
+                    <label style="display:block; margin: 5px 0;"><input type="checkbox" id="lockBlog"> Lock /blog</label>
+                    <label style="display:block; margin: 5px 0;"><input type="checkbox" id="lockSketches"> Lock /sketches</label>
+                    <label style="display:block; margin: 5px 0;"><input type="checkbox" id="lockGalery"> Lock /galery</label>
+                    <label style="display:block; margin: 5px 0;"><input type="checkbox" id="lockRandom"> Lock /random</label>
+                    <button class="form-btn" onclick="saveRevertedLockdowns()" style="margin-top:10px; font-weight:bold; padding:4px 10px;">Save Lockdowns</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top:30px;">
+        <div class="footer-boardlist"></div>
+    </div>
+
+    <script src="../scripts/js/script.js"></script>
+    <script type="module" src="../scripts/js/firebase.js"></script>
+
+    <script>
+        function initPageNotFound() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true' || window._isAdmin) {
+                document.getElementById('adminRevertArea').style.display = 'block';
+                syncRevertUI();
+            }
+            if (window.renderBoardList) {
+                window.renderBoardList();
+            }
+        }
+
+        function syncRevertUI() {
+            if (window._isAdmin) {
+                document.getElementById('loginArea').style.display = 'none';
+                document.getElementById('controlsArea').style.display = 'block';
+                const locks = window._globalSettings?.lockedBoards || {};
+                document.getElementById('lockBlog').checked = !!locks.blog;
+                document.getElementById('lockSketches').checked = !!locks.sketches;
+                document.getElementById('lockGalery').checked = !!locks.galery;
+                document.getElementById('lockRandom').checked = !!locks.random;
+            } else {
+                document.getElementById('loginArea').style.display = 'block';
+                document.getElementById('controlsArea').style.display = 'none';
+            }
+        }
+
+        async function saveRevertedLockdowns() {
+            if (!window._isAdmin) return;
+            const blog = document.getElementById('lockBlog').checked;
+            const sketches = document.getElementById('lockSketches').checked;
+            const galery = document.getElementById('lockGalery').checked;
+            const random = document.getElementById('lockRandom').checked;
+
+            try {
+                const statusEl = document.getElementById('revertStatus');
+                statusEl.textContent = 'Saving...';
+                await window._set(window._ref(window._db, 'admin/settings/lockedBoards'), {
+                    blog,
+                    sketches,
+                    galery,
+                    random
+                });
+                statusEl.textContent = 'Lockdowns updated successfully!';
+                setTimeout(() => { statusEl.textContent = ''; }, 3000);
+            } catch (e) {
+                alert('Error updating lockdowns: ' + e.message);
+            }
+        }
+
+        // Keep UI updated on auth changes
+        const checkInterval = setInterval(() => {
+            if (window._isAdmin) {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('admin') === 'true' || window._isAdmin) {
+                    document.getElementById('adminRevertArea').style.display = 'block';
+                    syncRevertUI();
+                    clearInterval(checkInterval);
+                }
+            }
+        }, 500);
+    </script>
+</body>
+</html>
