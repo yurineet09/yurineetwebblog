@@ -2196,12 +2196,7 @@ function injectAdminUI() {
                   <div id="admGlobalBannerStatus" style="font-size:10px; color:var(--color-fg-muted);"></div>
                 </td>
               </tr>
-              <tr>
-                <td class="form-label">Show Top Sketches</td>
-                <td>
-                  <input type="checkbox" id="admGlobalShowTopSketches" ${currentSettings.showTopSketches !== false ? 'checked' : ''}>
-                </td>
-              </tr>
+             
               <tr>
                 <td class="form-label" style="color:red; font-weight:bold;">TOTAL LOCKDOWN</td>
                 <td>
