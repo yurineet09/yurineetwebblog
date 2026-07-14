@@ -1556,6 +1556,8 @@ async function submitPost() {
     return;
   }
 
+  const lockUpdateBox = document.getElementById('edLockUpdate')?.checked || false;
+  const lockOriginal = document.getElementById('edLockOriginal')?.checked || false;
   const lockUpdate = lockUpdateBox || (!editingId && lockOriginal);
   if ((lockUpdate || (editingId && lockOriginal && !(existing?.originalLockedData && !getOriginalPayload(existing)))) && !lockPassword) {
     if (status) status.textContent = 'enter post password.';
@@ -2094,13 +2096,10 @@ function injectAdminUI() {
               <td><input type="text" id="postAuthor" maxlength="42" placeholder="Anonymous" style="width:45%;box-sizing:border-box;"> <span style="font-size:10px;color:var(--color-fg-muted);">blank = Anonymous</span></td> 
             </tr> 
             <tr> 
-              <td class="form-label">Subject</td> 
+              <td class="form-label">Title</td> 
               <td><input type="text" id="postTitle" style="width:100%;box-sizing:border-box;"></td> 
             </tr> 
-            <tr> 
-              <td class="form-label">Options</td> 
-              <td><input type="text" id="postOptions" placeholder="sage / noko / note" style="width:45%;box-sizing:border-box;"> <input type="text" id="postBadge" placeholder="badge" maxlength="18" style="width:24%;box-sizing:border-box;"></td> 
-            </tr> 
+           
             <tr> 
               <td class="form-label">Mood</td> 
               <td> 
@@ -2130,12 +2129,7 @@ function injectAdminUI() {
                 <div id="edImgPreview" style="display:flex; flex-wrap:wrap; gap:5px; margin-top:4px;"></div> 
               </td> 
             </tr> 
-            <tr>
-              <td class="form-label"><img class="admin-key-icon" src="${esc(POST_ICONS.key)}" alt="Password" title="Password"></td>
-              <td>
-                <input type="password" id="postLockPassword" placeholder="post password..." style="width:45%;box-sizing:border-box;">
-              </td>
-            </tr>
+           
             <tr>
               <td class="form-label">Settings</td>
               <td>
