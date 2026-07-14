@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../chan.css">
+    <script src="../scripts/js/site-settings.js"></script>
+    <title>GALLERY - YURI.NEET09</title>
+</head>
+<body onload="if (window.switchGalleryTab) { window.switchGalleryTab('sketches'); } else { setTimeout(() => { window.switchGalleryTab && window.switchGalleryTab('sketches'); }, 300); }">
+    <div class="boardlist">
+        <span class="boardlist-dynamic"></span>
+        <span class="boardlist-right">[<a href="../../index.html">home</a>] [<a href="#" data-open-settings data-i18n="settings">settings</a>]</span>
+    </div>
+
+    <div class="logo">
+        <img class="board-emblem" src="../images/GALLERYIMGBAN.jpg" alt="" id="banner">
+        <div class="subtitle">/gallery - media archive</div>
+        <hr class="hrThin">
+    </div>
+
+    <div class="blackcontainer">
+        <!-- Gallery Tab Headers -->
+        <div class="gallery-tabs" style="display: flex; gap: 10px; margin-bottom: 12px; justify-content: center;">
+            <button id="gtab-sketches" class="form-btn active" style="font-size: 13px; font-weight: bold; padding: 4px 12px;" onclick="switchGalleryTab('sketches')">sketches</button>
+            <button id="gtab-pictures" class="form-btn" style="font-size: 13px; font-weight: bold; padding: 4px 12px;" onclick="switchGalleryTab('pictures')">pictures</button>
+        </div>
+
+        <div class="gallery-toolbar" style="margin-bottom: 12px; font-size: 12px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+            <span class="toolbar-group">
+                <span class="toolbar-label" data-i18n="sort">sort</span>:
+                <select id="galSortSelect" onchange="galFilterSort()" class="sort-btn" style="padding: 1px 4px;">
+                    <option value="newest" selected>newest</option>
+                    <option value="oldest">oldest</option>
+                </select>
+            </span>
+        </div>
+
+        <div id="galAdminContainer"></div>
+
+        <!-- Sketches Tab Container -->
+        <div id="gal-sketches">
+            <ul id="sketchGrid" class="gallery-grid" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;"></ul>
+            <div id="sketchPager" class="gallery-pager" style="text-align: center; margin-top: 15px;"></div>
+        </div>
+
+        <!-- Pictures Tab Container -->
+        <div id="gal-pictures" style="display: none;">
+            <ul id="picGrid" class="gallery-grid" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;"></ul>
+            <div id="picPager" class="gallery-pager" style="text-align: center; margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <div id="lb" onclick="lbClose()">
+        <img id="lb-img" alt="">
+    </div>
+
+    <div class="footer">
+        <div class="footer-boardlist"></div>
+    </div>
+
+    <script src="../scripts/js/sketch-data.js"></script>
+    <script src="../scripts/js/script.js"></script>
+    <script type="module" src="../scripts/js/firebase.js"></script>
+</body>
+</html>
